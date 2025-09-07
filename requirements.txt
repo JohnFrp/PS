@@ -1,6 +1,8 @@
-flask
-Flask-SQLAlchemy
-pandas
-psycopg2-binary
-openpyxl
+Flask==2.3.3
+Flask-SQLAlchemy==3.0.5
+pandas==2.0.3
+openpyxl==3.1.2
+psycopg2-binary==2.9.7
+SQLAlchemy==2.0.19
 gunicorn
+
