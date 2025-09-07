@@ -22,7 +22,7 @@ DATABASE_URI = f"postgresql://postgres:{encoded_password}@db.okwpnjobjxrcxhtzvys
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'pharmacy-pos-secret-key'
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'pharmacy-pos-secret-key')
     
     # Configure the database URI
     app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
@@ -553,6 +553,11 @@ def api_medications():
 @app.route('/api/sales_summary')
 def api_sales_summary():
     return jsonify(get_sales_summary())
-
+    
+# This is needed for Vercel
 if __name__ == '__main__':
     app.run(debug=True)
+else:
+    # This is for Vercel deployment
+    from flask import Flask
+    application = app
